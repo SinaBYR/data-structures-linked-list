@@ -45,6 +45,27 @@ class LinkedList {
             }
             current->next = n;
         };
+
+        void deleteNode(int data) {
+            Node *deletePtr = NULL;
+            current = head;
+            temp = head;
+
+            while(current != NULL && current->data != data) {
+                temp = current;
+                current = current->next;
+            };
+
+            if(current == NULL) {
+                cout << data << " was not found in the list" << endl;
+                delete deletePtr;
+                return;
+            };
+
+            deletePtr = current;
+            current = current->next;
+            temp->next = current;
+        }
 };
 
 int main(){
