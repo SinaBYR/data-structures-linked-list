@@ -71,3 +71,14 @@ class LinkedList {
 int main(){
     return 0;
 };
+
+
+// if(head != NULL) {
+//     current = head;
+//     while(current->next != NULL) {
+//         current = current->next;
+//     }
+//     current->next = n;
+// } else {
+//     head = n;
+// }
