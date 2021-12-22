@@ -13,22 +13,25 @@ class LinkedList {
         Node *current;
         Node *temp;
     public:
+        // linked list constructor
         LinkedList(){
             head = NULL;
             current = NULL;
             temp = NULL;
         };
 
-        // ~LinkedList(){
-        //     Node *cutptr = head;
-        //     Node *temp;
-        //     while (cutptr != NULL){
-        //         temp = cutptr;
-        //         cutptr = cutptr->next;
-        //         delete temp;
-        //     }
-        // };
+        // destroy linked list entirely
+        ~LinkedList(){
+            Node *cutptr = head;
+            Node *temp;
+            while (cutptr != NULL){
+                temp = cutptr;
+                cutptr = cutptr->next;
+                delete temp;
+            }
+        };
 
+        // add node to the end of the list
         void addNode(int data) {
             Node *n = new Node();
             n->data = data;
@@ -37,15 +40,16 @@ class LinkedList {
             if(head) {
                 head = n;
                 return;
-            }
+            };
 
             current = head;
             while(current->next != NULL) {
                 current = current->next;
-            }
+            };
             current->next = n;
         };
 
+        // delete a node from list
         void deleteNode(int data) {
             Node *deletePtr = NULL;
             current = head;
@@ -62,9 +66,20 @@ class LinkedList {
                 return;
             };
 
+            if(current == head) {
+                head = head->next;
+                temp = NULL;
+            } else {
+                temp->next = current;
+            }
+
             deletePtr = current;
             current = current->next;
-            temp->next = current;
+            delete deletePtr;
+        };
+
+        bool isEmpty() {
+            return head == NULL;
         }
 };
 
