@@ -80,7 +80,20 @@ class LinkedList {
 
         bool isEmpty() {
             return head == NULL;
-        }
+        };
+
+        void display() {
+            if(isEmpty()) {
+                cout << "List is empty." << endl;
+                return;
+            }
+            
+            current = head;
+            while(current->next != NULL) {
+                cout << current->data << endl;
+                current = current->next;
+            };
+        };
 };
 
 int main(){
