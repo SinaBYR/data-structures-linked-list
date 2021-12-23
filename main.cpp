@@ -22,22 +22,23 @@ class LinkedList {
 
         // destroy linked list entirely
         ~LinkedList(){
-            Node *cutptr = head;
-            Node *temp;
-            while (cutptr != NULL){
-                temp = cutptr;
-                cutptr = cutptr->next;
-                delete temp;
+            current = head;
+            while (current != NULL){
+                Node *next = current->next;
+                delete current;
+                current = next;
             }
+            head = NULL;
+            cout << "Linked list destroyed successfully." << endl;
         };
 
         // add node to the end of the list
         void addNode(int data) {
-            Node *n = new Node();
+            Node *n = new Node;
             n->data = data;
             n->next = NULL;
 
-            if(head) {
+            if(head == NULL) {
                 head = n;
                 return;
             };
@@ -70,12 +71,13 @@ class LinkedList {
                 head = head->next;
                 temp = NULL;
             } else {
+                deletePtr = current;
+                current = current->next;
                 temp->next = current;
             }
 
-            deletePtr = current;
-            current = current->next;
             delete deletePtr;
+            cout << data << " was deleted successfully." << endl;
         };
 
         bool isEmpty() {
@@ -87,9 +89,10 @@ class LinkedList {
                 cout << "List is empty." << endl;
                 return;
             }
-            
+
             current = head;
-            while(current->next != NULL) {
+            cout << "List items are: " << endl;
+            while(current != NULL) {
                 cout << current->data << endl;
                 current = current->next;
             };
@@ -97,16 +100,15 @@ class LinkedList {
 };
 
 int main(){
+    LinkedList myList;
+
+    myList.addNode(10);
+    myList.addNode(20);
+    myList.addNode(30);
+
+    myList.deleteNode(10);
+
+    myList.display();
+
     return 0;
 };
-
-
-// if(head != NULL) {
-//     current = head;
-//     while(current->next != NULL) {
-//         current = current->next;
-//     }
-//     current->next = n;
-// } else {
-//     head = n;
-// }
